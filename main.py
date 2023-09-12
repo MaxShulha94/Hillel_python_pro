@@ -1,5 +1,20 @@
 def parse(query: str) -> dict:
-    return {}
+    query_dict = {}
+
+    if 'name' in query:
+        query = (query.split('?')[1])
+        if query:
+            keys_values = query.split('&')
+            for items in keys_values:
+                if items == '':
+                    keys_values.remove(items)
+                else:
+                    key, value = items.split('=')
+
+                    query_dict[key] = value
+            return query_dict
+    else:
+        return query_dict
 
 
 if __name__ == '__main__':
